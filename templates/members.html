@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <title>{% block title %}Members List - CEA Portal {% endblock %}</title>
+</head>
+<body>
+<main class="content">
+    {% block content %}
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+            <div class="d-block mb-4 mb-md-0">
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">
+                            <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                        </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Members List</li>
+                    </ol>
+                </nav>
+            </div>
+
+
+            </div>
+        </div>
+
+        <div class="card card-body shadow border-0 table-wrapper table-responsive">
+            <h2 class="h4">Members List ممبران کی فہرست</h2>
+            <p>Below is a comprehensive list of all active members. You can view and manage their details here.</p>
+
+            <table id="basic-btn" class="table user-table table-hover align-items-center">
+                <thead>
+                <tr>
+                    <th class="border-bottom">Name</th>
+                    <th class="border-bottom">Name</th>
+                    <th class="border-bottom">CEA Card Number</th>
+                    <th class="border-bottom">Phone</th>
+                    <th class="border-bottom">Tehsil</th>
+                    <th class="border-bottom">Membership Status</th>
+                    <th class="border-bottom">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in members %}
+                <tr>
+                    <td><span class="fw-normal">{{ member.full_name }}</span></td>
+                    <td><span class="fw-normal">{{ member.business_name}}</span></td>
+                    <td><span class="fw-normal">{{ member.user.currency_association_id }}</span></td>
+                    <td><span class="fw-normal">{{ member.pri_mob }}</span></td>
+                    <td><span class="fw-normal">{{ member.tehsil }}</span></td>
+                    <td>
+                        {% if member.status == 'active' %}
+                        <span class="fw-normal d-flex align-items-center"><svg class="icon icon-xxs text-success me-1"
+                                                                               fill="currentColor" viewBox="0 0 20 20"
+                                                                               xmlns="http://www.w3.org/2000/svg"><path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path></svg> <span class="fw-normal text-success">Active</span></span>
+                        {% elif member.status == 'suspended' %}
+                        <span class="fw-normal d-flex align-items-center"><svg class="icon icon-xxs text-danger me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg> <span class="fw-normal text-danger">Suspended</span></span>
+                        {% else %}
+                        <span class="fw-normal d-flex align-items-center"><svg class="icon icon-xxs text-purple me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> <span class="fw-normal text-purple">Pending</span></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                </svg>
+                                <span class="visually-hidden">Toggle Dropdown</span></button>
+                            <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1" style="">
+
+                                <a class="dropdown-item d-flex align-items-center" href="{% url 'view_member' member.id %}">
+                                <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                    <path fill-rule="evenodd"
+                                          d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                View Details </a>
+{% if request.user.is_staff or request.user.is_superuser %}
+    <a class="dropdown-item d-flex align-items-center" href="#" onclick="confirmToggleStatus({{ member.id }}, '{{ member.status }}')">
+        <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 6a3 3 0 11-6 0 3 3 0 016 0zM14 17a6 6 0 00-12 0h12zM13 8a1 1 0 100 2h4a1 1 0 100-2h-4z"></path>
+        </svg>
+        {% if member.status == 'active' %}
+            Suspend
+        {% else %}
+            Activate
+        {% endif %}
+    </a>
+{% endif %}
+                                <script>
+
+                                // Function to get the CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+// Function to handle the toggle status action
+function confirmToggleStatus(memberId, currentStatus) {
+    let actionText = (currentStatus === 'active') ? 'Suspend' : 'Activate';
+    let confirmButtonText = (currentStatus === 'active') ? 'Yes, suspend!' : 'Yes, activate!';
+
+    Swal.fire({
+        title: `Are you sure you want to ${actionText} this member?`,
+        text: `The member will be ${actionText}d.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmButtonText,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // AJAX request to toggle member status
+            $.ajax({
+                url: '/toggle-member-status/' + memberId + '/',  // Adjust URL if needed
+                type: 'POST',
+                headers: { "X-CSRFToken": getCookie('csrftoken') },  // Add CSRF token for security
+                success: function(response) {
+                    Swal.fire(
+                        'Success!',
+                        response.message,
+                        'success'
+                    ).then(() => {
+                        // Reload the page to reflect the new status
+                        location.reload();
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire(
+                        'Error!',
+                        xhr.responseText || 'There was an issue updating the status.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+</script>
+                            </div>
+                        </div>
+                        {% if request.user.is_staff or request.user.is_superuser %}
+    <a href="#" onclick="confirmDelete({{ member.id }})" class="">
+        <svg class="icon icon-xs text-danger ms-1" title="" data-bs-toggle="tooltip" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-bs-original-title="Delete" aria-label="Delete">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+        </svg>
+    </a>
+                        <script>
+    // Function to get the CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Function to confirm deletion
+    function confirmDelete(memberId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This member will be permanently deleted!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the AJAX request to delete the member
+                $.ajax({
+                    url: '/delete-member/' + memberId + '/',
+                    type: 'POST',
+                    headers: { "X-CSRFToken": getCookie('csrftoken') },
+                    success: function(response) {
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        ).then(() => {
+                            // Optionally, reload the page or remove the deleted item from the DOM
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'There was a problem deleting the member.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+</script>
+{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <style>
+                div.dataTables_info {
+                    float: right;
+                }
+            </style>
+        </div>
+    {% endblock %}
+</main>
+
+</body>
+

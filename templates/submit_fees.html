@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Fees</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script>
+        function showPaymentFields() {
+            var submissionMethod = document.getElementById("submission_method").value;
+            var bankFields = document.getElementById("bankFields");
+
+            if (submissionMethod === 'bank_transfer') {
+                bankFields.style.display = 'block';
+            } else {
+                bankFields.style.display = 'none';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showPaymentFields();  // Show relevant fields on page load if selection was already made
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Fee Submission</h2>
+
+        <form method="POST" action="{% url 'submit_fee' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="fee_type">Fee Type:</label>
+                {{ form.fee_type }}
+            </div>
+
+            <div class="form-group">
+                <label for="submission_method">Submission Method:</label>
+                {{ form.submission_method }}
+            </div>
+
+            <div class="form-group">
+                <label for="amount_submitted">Amount Submitted (PKR):</label>
+                {{ form.amount_submitted }}
+            </div>
+
+            <div class="form-group">
+                <label for="amount_remaining">Amount Remaining (PKR):</label>
+                {{ form.amount_remaining }}
+            </div>
+
+            <div class="form-group">
+                <label for="transaction_id">Transaction ID:</label>
+                {{ form.transaction_id }}
+            </div>
+
+            <!-- Bank Transfer Fields -->
+            <div id="bankFields" style="display:none;">
+                <fieldset>
+                    <legend>Bank Transfer Information</legend>
+                    <div class="form-group">
+                        <label for="bank_name">Bank Name:</label>
+                        {{ form.bank_name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account_number">Account Number:</label>
+                        {{ form.account_number }}
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Fee</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('submission_method').addEventListener('change', showPaymentFields);
+    </script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+<head>
+    <title>{% block title %}Signup - CEA Portal {% endblock %}</title>
+</head>
+<body>
+{% block content %}
+
+    <main>
+    <style>
+    .is-invalid {
+        border: 2px solid red;
+    }
+</style>
+        <!-- Section -->
+        <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+                <p class="text-center">
+                </p>
+                <div class="row justify-content-center form-bg-image" data-background-lg="../../assets/img/illustrations/signin.svg">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">New Member Registration <br>نئے ممبر کی رجسٹریشن</h1>
+                            </div>
+                            <form id="signup-form" action="{% url 'signup' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div><label for="full_name">Full Name پورا نام</label>
+<input  class="form-control" id="full_name" name="full_name" type="text" placeholder="Enter your full name" required=""/>
+</div>
+                            </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div><label for="fathers_name">Father’s Name والد کا نام</label> <input  class="form-control" id="fathers_name"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your father name"
+                                                                                 required="" name="father_name"></div>
+                        </div>
+                        <div class="col-md-4 mb-3"><label for="birthday">Birthday تاریخ پیدائش</label>
+                            <div class="input-group"><span class="input-group-text"><svg class="icon icon-xs"
+                                                                                         fill="currentColor"
+                                                                                         viewBox="0 0 20 20"
+                                                                                         xmlns="http://www.w3.org/2000/svg"><path
+                                    fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd"></path></svg> </span><input  data-datepicker=""
+                                                                                    class="form-control datepicker-input"
+                                                                                    id="birthday" type="text"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    required="" name="dob"></div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3">
+                            <div><label for="cnic">CNIC Number شناختی کارڈ نمبر</label> <input  class="form-control" id="cnic"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your CNIC number"
+                                                                                 required="" name="cnic"></div>
+                        </div>
+                        <div class="col-md-4 mb-3"><label for="nic_type">Type of NIC شناختی کارڈ کی قسم</label> <select name="nic_type" class="form-select mb-0" id="nic_type" aria-label="Type of NIC">
+                            <option value="">Select NIC Type</option> <!-- Placeholder option -->
+                            <option value="cnic">CNIC</option>
+                            <option value="nicop">NICOP</option>
+                        </select></div>
+                        <div class="col-md-4 mb-3"><label for="gender">Gender جنس</label> <select name="gender"  class="form-select mb-0" id="gender" aria-label="Gender select example">
+                            <option value="">Gender</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3"><label for="pri_mob">Primary Phone بنیادی فون نمبر</label>
+                            <input  class="form-control" id="pri_mob"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your Phone Number"
+                                                                                 required="" name="pri_mob">
+                        </div>
+                        <div class="col-md-6 mb-3"><label for="sec_mob">Secondary Phone بنیادی فون نمبر</label>
+                            <input  class="form-control" id="sec_mob"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your secondary phone number"
+                                                                                 required="" name="sec_mob">
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3">
+    <div class="form-group">
+        <label for="country_of_stay">Country of Stay قیام کا ملک</label>
+        <div class="input-group">
+            <select  class="form-select mb-0" id="country_of_stay" name="country_of_stay" aria-label="Country of Stay">
+                <option value="" >Country of Stay</option>
+                {% for country in countries %}
+                <option value="{{ country.code }}">{{ country.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+                        <div class="col-md-4 mb-3">
+    <div class="form-group">
+        <label for="dual_citizen">Dual Citizen دوہری شہریت</label>
+        <div class="input-group">
+            <select  class="form-select mb-0" id="dual_citizen" name="dual_citizen" aria-label="dual_citizen">
+                <option value="" disabled >Dual Citizen</option>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+        </div>
+    </div>
+</div>
+                        <div class="col-md-4 mb-3">
+    <div class="form-group">
+        <label for="other_citizenship">Other Citizenship دوسری شہریت</label>
+        <div class="input-group">
+            <select  class="form-select mb-0" id="other_citizenship" name="other_citizenship" aria-label="other_citizenship">
+                <option value=""   >NIL</option>
+                {% for country in countries %}
+                <option value="{{ country.code }}">{{ country.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+    <div class="form-group">
+        <label for="present_address">Present Address موجودہ پتہ</label>
+        <div class="input-group">
+            <textarea  class="form-control" id="present_address" name="present_address" placeholder="Enter your present address" required=""></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 mb-3">
+    <div class="form-group">
+        <label for="permanent_address">Permanent Address مستقل پتہ</label>
+        <div class="input-group">
+            <textarea  class="form-control" id="permanent_address" name="permanent_address" placeholder="Enter your permanent address" required=""></textarea>
+        </div>
+    </div>
+</div>
+                    </div>
+                    <h2 class="h5 my-4">Business Information</h2>
+                    <div class="row">
+                        <div class="col-sm-9 mb-3">
+                            <div class="form-group"><label for="business_name">Business Name کاروبار کا نام</label> <input  class="form-control"
+                                                                                                id="business_name" type="text"
+                                                                                                placeholder="Enter your business name"
+                                                                                                required="" name="business_name" ></div>
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <div class="form-group"><label for="designation">Designation عہدہ</label>
+                                <input  class="form-control" name="designation" id="designation" type="text" placeholder="Enter designation" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group"><label for="no_of_employees">No of Employees ملازمین کی تعداد</label>
+                                <input  class="form-control" name="employee_number" id="no_of_employees" type="number" placeholder="Enter no of employees" required>
+                            </div>
+                        </div>
+                       <div class="col-sm-4 mb-3">
+                            <label for="pri_land">Primary Landline بنیادی لینڈ لائن</label>
+                            <div class="input-group">
+                                    <input  class="form-control" id="pri_land" name="pri_land" type="tel" placeholder="Enter primary landline" required="">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="secondary_landline">Second Landline سیکنڈری لینڈ لائن</label>
+                                <div class="input-group">
+                                    <input  class="form-control" name="sec_land" id="secondary_landline" type="tel" placeholder="Enter your secondary landline" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group"><label for="new_district">District ضلع</label>
+                            <select class="form-select" id="new_district" name="district" required>
+                                <option value="" disabled selected >District</option>
+                                {% for city in city %}
+                                <option value="{{ city.id }}">{{ city.name }}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3"><label for="new_tehsil">Tehsil تحصیل</label>
+                            <div class="choices" data-type="select-one" role="combobox" tabindex="0"
+                                 aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" dir="ltr">
+                                <div class="choices__inner">
+                                <select class="form-select" id="new_tehsil" name="tehsil" required>
+                                    <option value="" selected>Tehsil</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group"><label for="business_address">Business Address مکمل کاروباری پتہ</label> <textarea name="business_address" class="form-control" id="business_address"
+                                                                                        type="tel" placeholder="Business Address"
+                                                                                                        required=""></textarea></div>
+                        </div>
+                    </div>
+
+                                                    <h2 class="h5 my-4">Payment Information</h2>
+<div class="col-md-12 mb-3 d-flex align-items-center">
+    <label for="submission_method" class="me-2 flex-shrink-0">Submission Method جمع کرانے کا طریقہ</label>
+    {% render_field fee_renewal_form.submission_method class="form-select mb-0 flex-grow-1" placeholder=form.submission_method.label %}
+</div>
+
+                    <!-- Bank Transfer Info Box (hidden by default) -->
+<!-- Bank Transfer Info Box (hidden by default) -->
+<div id="bank-transfer-info" class="bank-info-container mb-3" style="display: none;">
+    <div class="bank-info-title">Bank Transfer Details بینک ٹرانسفر کی تفصیلات</div>
+
+    <!-- Two-column layout for two bank details -->
+    <div class="bank-info-grid">
+        <div class="transaction-info">
+            <p>Please transfer <strong>PKR 7,500</strong> to one of the accounts listed below and make sure to save the transaction ID or reference number, as it will be required when filling out the form.
+            <br>برائے کرم نیچے دیے گئے اکاؤنٹس میں سے کسی ایک میں ساڑھے سات ہزار روپے منتقل کر دیں اور ٹرانزیکشن ائی ڈی یا ریفرنس نمبر کو محفوظ کر لیں کیونکہ فارم کو مکمل کرتے ہوئے اس کی ضرورت ہوگی۔</p>
+        </div>
+
+        <!-- Bank 1 Details -->
+        {% for payment in payment_details %}
+        <div class="bank-info-box" onclick="selectBank('bank_choice_{{ forloop.counter }}')">
+            <input type="radio" name="payment" id="bank_choice_{{ forloop.counter }}" value="{{ payment.id }}" class="bank-radio" style="display: none;" {% if forloop.first %} checked {% endif %}>
+            {% if payment.bank_name == 'UNITED BANK LIMITED - UBL' %}
+            <img src="{% static '/assets/img/ubl_logo.png' %}"/>
+            {% endif %}
+            <h5 class="bank-name">{{ payment.bank_name }} <br>{% if payment.bank_name == 'UNITED BANK LIMITED - UBL' %} یونائیٹڈ بینک لمیٹڈ {% endif %}</h5>
+            <div class="bank-info-item">
+                <span class="label">Account Title:</span>
+                <span id="bank_name_display_a">{{ payment.title }}</span>
+            </div>
+            <div class="bank-info-item">
+                <span class="label">Account Number:</span>
+                <span id="account_number_display_a">{{ payment.account_number }}</span>
+            </div>
+            <div class="bank-info-item">
+                <span class="label">IBAN:</span>
+                <span id="branch_code_display_a">{{ payment.iban }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+                    <style>
+  .bank-info-container {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.bank-info-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.bank-info-grid {
+    display: flex;
+    justify-content: space-between; /* Space between boxes */
+    flex-wrap: wrap; /* Wrap if necessary */
+}
+.transaction-info {
+    background-color: #f9f9f9; /* Light background color */
+    border: 1px solid #ddd; /* Border around the message */
+    padding: 15px; /* Padding inside the message box */
+    margin-bottom: 20px; /* Space below the message box */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Centered text */
+}
+
+.bank-info-box {
+    border: 1px solid #ddd; /* Border around each box */
+    padding: 15px; /* Padding inside the box */
+    flex: 1; /* Allow boxes to grow equally */
+    margin: 10px; /* Space between boxes */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    max-width: 48%; /* Limit box width */
+}
+
+.bank-info-box img {
+    display: block; /* Center the image */
+    margin: 0 auto 10px; /* Center the image and add margin below */
+    max-width: 100px; /* Limit logo size */
+}
+
+.label {
+    font-weight: bold; /* Make labels bold */
+}
+
+.bank-name {
+    text-align: center; /* Center the bank name */
+    margin-bottom: 10px; /* Space below bank name */
+}
+
+.bank-info-item {
+    padding: 8px 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.bank-info-item:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+.bank-info-item .label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.bank-info-item span {
+    color: #212529;
+}
+    .bank-info-box {
+        cursor: pointer; /* Indicate that the box is clickable */
+        border: 1px solid #ddd; /* Default border */
+        padding: 15px; /* Padding inside the box */
+    }
+    .bank-info-box.selected {
+        border: 2px solid #007bff; /* Highlight selected bank */
+    }
+                    </style>
+
+<div class="col-md-12 mb-3 d-flex align-items-center">
+    <label for="amount_submitted" class="me-2 flex-shrink-0">Amount submitted جمع کرائی گئی رقم</label>
+    {% render_field fee_renewal_form.amount_submitted class="form-control mb-0 flex-grow-1" placeholder=form.amount_submitted.label %}
+</div>
+
+<!-- Transaction ID Field (Initially hidden) -->
+<div id="transaction-id-field" class="col-md-12 mb-3 d-flex align-items-center" style="display: none!important;">
+    <label for="transaction_id" class="me-2 flex-shrink-0">Transaction ID ٹرانزیکشن ائی ڈی</label>
+    {% render_field fee_renewal_form.transaction_id class="form-control mb-0 flex-grow-1" placeholder=form.transaction_id.label %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const submissionMethodSelect = document.getElementById('id_submission_method');
+        const bankInfoBox = document.getElementById('bank-transfer-info');
+        const transactionIdField = document.getElementById('transaction-id-field'); // Transaction ID field
+
+        // Function to toggle the display of bank transfer info and transaction ID field
+        function toggleBankInfo() {
+            if (submissionMethodSelect.value === 'bank_transfer') {
+                bankInfoBox.style.setProperty('display', 'block', 'important');
+                transactionIdField.style.setProperty('display', 'flex', 'important'); // Show transaction ID field
+                // Activate the first bank by default
+                selectBank('bank_choice_1');
+            } else {
+                bankInfoBox.style.setProperty('display', 'none', 'important');
+                transactionIdField.style.setProperty('display', 'none', 'important'); // Hide transaction ID field
+            }
+        }
+
+        // Initial check when the page loads
+        toggleBankInfo();
+
+        // Add event listener to handle the selection change
+        submissionMethodSelect.addEventListener('change', toggleBankInfo);
+    });
+
+    // Function to highlight the selected bank
+    function selectBank(selectedId) {
+        const allRadios = document.querySelectorAll('.bank-radio');
+        const allBankBoxes = document.querySelectorAll('.bank-info-box');
+
+        allRadios.forEach((radio, index) => {
+            const bankBox = allBankBoxes[index];
+            if (radio.id === selectedId) {
+                radio.checked = true; // Check the selected radio button
+                bankBox.classList.add('selected'); // Highlight selected bank
+            } else {
+                bankBox.classList.remove('selected'); // Remove highlight for unselected banks
+            }
+        });
+    }
+</script>
+
+                    <div class="mt-3">
+                        <button class="btn btn-gray-800 mt-2 animate-up-2" type="submit">Submit Application درخواست جمع کروائیں۔</button>
+                    </div>
+                </form>
+
+                            <script>
+    document.getElementById('new_district').addEventListener('change', function () {
+        const districtId = this.value;
+        fetch(`/get-tehsil/${districtId}`)
+            .then(response => response.json())
+            .then(data => {
+                const tehsilDropdown = document.getElementById('new_tehsil');
+                tehsilDropdown.innerHTML = ''; // Clear current options
+                data.tehsils.forEach(tehsil => {
+                    const option = document.createElement('option');
+                    option.value = tehsil.id;
+                    option.text = tehsil.name;
+                    tehsilDropdown.appendChild(option);
+                });
+            });
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent normal form submission
+
+        const form = this;
+        const inputs = form.querySelectorAll('input[required]');
+        let isValid = true;
+        let errorMessages = '';
+
+        // Loop through all required inputs and check if they are valid
+        inputs.forEach(input => {
+            // Remove previous invalid classes
+            input.classList.remove('is-invalid');
+
+            // Check if the input is empty or invalid
+            if (input.value.trim() === '') {
+                input.classList.add('is-invalid'); // Add red border
+                isValid = false;
+                errorMessages += `<p>${input.name} is required.</p>`;  // Collect error messages
+            }
+        });
+
+        if (isValid) {
+            // Get CSRF token
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: 'Submitting...',
+                text: 'Please wait while the form is being submitted.',
+                icon: 'info',
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+
+            const formData = new FormData(form); // Collect form data
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrftoken,  // Include CSRF token
+                    'X-Requested-With': 'XMLHttpRequest'  // Mark as AJAX request
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();  // Parse response as JSON
+                } else {
+                    throw new Error('Server error during submission'); // Handle server errors
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Form submitted successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                      window.location.href = '/signup-success/';  // Replace with your success page URL
+                    });
+                } else {
+                    // Show form validation errors from the server inside SweetAlert
+                    let errorList = '';
+                    const errors = data.errors;  // Assuming 'errors' field in the response
+                    for (let field in errors) {
+                        errors[field].forEach(error => {
+                            errorList += `<p>${error}</p>`;
+                        });
+                    }
+
+                    Swal.fire({
+                        title: 'Error!',
+                        html: `<strong>Form submission failed. Please check the errors:</strong> ${errorList}`,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);  // Debugging: log the error
+
+                // Display detailed error message in SweetAlert
+                Swal.fire({
+                    title: 'Error!',
+                    text: `An error occurred: ${error.message}. Please try again later.`,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+        } else {
+            // Show client-side form validation errors inside SweetAlert
+            Swal.fire({
+                title: 'Error!',
+                html: `<strong>Please fill in the required fields:</strong> ${errorMessages}`,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+</script>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    Already have an account? 
+                                    <a href="{% url 'login' %}" class="fw-bold">Login here</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+</body>
+
+</html>

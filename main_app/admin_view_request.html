@@ -1,0 +1,29 @@
+<h1>Review Membership Change Request for {{ member.full_name }}</h1>
+
+<h2>Proposed Changes</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Old Value</th>
+            <th>New Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for field, values in changes.items %}
+        <tr>
+            <td>{{ field }}</td>
+            <td>{{ values.previous }}</td>
+            <td>{{ values.new }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" name="approve">Approve Request</button>
+    <button type="submit" name="reject">Reject Request</button>
+
+    <textarea name="rejection_reason" placeholder="Reason for rejection"></textarea>
+</form>

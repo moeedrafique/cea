@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+<body>
+<main class="content">
+    {% block content %}
+    <div class="row">
+        <div class="col-12 col-xl-12">
+            <div class="card card-body border-0 shadow mb-4"><h2 class="h5 mb-4">General information</h2>
+                <form>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div><label for="full_name">Full Name پورا نام</label> <input class="form-control" id="full_name"
+                                                                                   type="text"
+                                                                                   placeholder="Enter your full name"
+                                                                                   required=""></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div><label for="fathers_name">Father’s Name والد کا نام</label> <input class="form-control" id="fathers_name"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your father name"
+                                                                                 required=""></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div><label for="last_name">CNIC Number شناختی کارڈ نمبر</label> <input class="form-control" id="last_name"
+                                                                                 type="text"
+                                                                                 placeholder="Also your last name"
+                                                                                 required=""></div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3"><label for="birthday">Birthday تاریخ پیدائش</label>
+                            <div class="input-group"><span class="input-group-text"><svg class="icon icon-xs"
+                                                                                         fill="currentColor"
+                                                                                         viewBox="0 0 20 20"
+                                                                                         xmlns="http://www.w3.org/2000/svg"><path
+                                    fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd"></path></svg> </span><input data-datepicker=""
+                                                                                    class="form-control datepicker-input"
+                                                                                    id="birthday" type="text"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    required=""></div>
+                        </div>
+                        <div class="col-md-4 mb-3"><label for="gender">Gender جنس</label> <select class="form-select mb-0"
+                                                                                              id="gender"
+                                                                                              aria-label="Gender select example">
+                            <option selected="selected">Gender</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select></div>
+                        <div class="col-md-4 mb-3"><label for="nic_type">Type of NIC شناختی کارڈ کی قسم</label> <select class="form-select mb-0"
+                                                                                              id="nic_type"
+                                                                                              aria-label="Gender select example">
+                            <option selected="selected">Gender</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group"><label for="email">Country of Stay قیام کا ملک</label> <input class="form-control"
+                                                                                            id="email" type="email"
+                                                                                            placeholder="name@company.com"
+                                                                                            required=""></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group"><label for="present_address">Present Address موجودہ پتہ</label> <textarea class="form-control"
+                                                                                            id="present_address" type="present_address"
+                                                                                            placeholder="Enter your present address"
+                                                                                                         required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group"><label for="permanent_address">Permanent Address مستقل پتہ</label> <textarea class="form-control"
+                                                                                            id="permanent_address" type="permanent_address"
+                                                                                            placeholder="Enter your permanent address"
+                                                                                                         required=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="h5 my-4">Location</h2>
+                    <div class="row">
+                        <div class="col-sm-9 mb-3">
+                            <div class="form-group"><label for="business_name">Business Name کاروبار کا نام</label> <input class="form-control"
+                                                                                                id="business_name" type="text"
+                                                                                                placeholder="Enter your business name"
+                                                                                                required=""></div>
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <div class="form-group"><label for="designation">Designation عہدہ</label> <input class="form-control"
+                                                                                              id="designation" type="designation"
+                                                                                              placeholder="Designation."
+                                                                                              required=""></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group"><label for="district">No of Employees ملازمین کی تعداد</label> <input class="form-control" id="district"
+                                                                                          type="text" placeholder="District"
+                                                                                          required=""></div>
+                        </div>
+                        <div class="col-sm-4 mb-3"><label for="state">Primary Landline بنیادی لینڈ لائن</label>
+                            <div class="choices" data-type="select-one" role="combobox" tabindex="0"
+                                 aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" dir="ltr">
+                                <div class="choices__inner"><select
+                                        class="form-select w-100 mb-0 choices__input is-hidden" id="state" name="state"
+                                        aria-label="State select example" tabindex="-1" aria-hidden="true"
+                                        data-choice="active">
+                                    <option value="State" selected="">Tehsil</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group"><label for="zip">Secondary Landline سیکنڈری لینڈ لائن</label> <input class="form-control" id="zip"
+                                                                                        type="tel" placeholder="ZIP"
+                                                                                        required=""></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group"><label for="district">District ضلع</label> <input class="form-control" id="district"
+                                                                                          type="text" placeholder="District"
+                                                                                          required=""></div>
+                        </div>
+                        <div class="col-sm-4 mb-3"><label for="state">Tehsil تحصیل</label>
+                            <div class="choices" data-type="select-one" role="combobox" tabindex="0"
+                                 aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" dir="ltr">
+                                <div class="choices__inner"><select
+                                        class="form-select w-100 mb-0 choices__input is-hidden" id="state" name="state"
+                                        aria-label="State select example" tabindex="-1" aria-hidden="true"
+                                        data-choice="active">
+                                    <option value="State" selected="">Tehsil</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group"><label for="zip">ZIP</label> <input class="form-control" id="zip"
+                                                                                        type="tel" placeholder="ZIP"
+                                                                                        required=""></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group"><label for="zip">Business Address مکمل کاروباری پتہ</label> <textarea class="form-control" id="zip"
+                                                                                        type="tel" placeholder="ZIP"
+                                                                                                        required=""></textarea></div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-gray-800 mt-2 animate-up-2" type="submit">Save all</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</main>
+
+</body>

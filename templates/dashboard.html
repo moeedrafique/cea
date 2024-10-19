@@ -1,0 +1,797 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %} Home - CEA Portal {% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
+<meta name="author" content="Themesberg">
+<meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+<meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
+<link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://demo.themesberg.com/volt-pro">
+<meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
+<meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+<meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
+<meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
+<meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+<meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="{% static '/assets/img/favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/img/favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static '/assets/img/favicon/favicon-16x16.png' %}">
+<link rel="manifest" href="{% static '/assets/img/favicon/site.webmanifest' %}">
+<link rel="mask-icon" href="{% static '/assets/img/favicon/safari-pinned-tab.svg' %}" color="#ffffff">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Sweet Alert -->
+<link type="text/css" href="{% static '/vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+
+<!-- Notyf -->
+<link type="text/css" href="{% static '/vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+
+<!-- Volt CSS -->
+<link type="text/css" href="{% static '/css/volt.css' %}" rel="stylesheet">
+
+<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+</head>
+
+<body>
+        <main class="content">
+            {% block content %}
+
+
+            <div class="py-4">
+                <div class="dropdown">
+                    <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        New Task
+                    </button>
+
+                    <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
+                        {% if user.is_staff %}
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
+                            Pending Members
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="{% url 'pending_requests' %}">
+                            <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path></svg>                            
+                            Pending Renewal Requests
+                        </a>
+                        {% endif %}
+                        <a class="dropdown-item d-flex align-items-center" href="{% url 'renew_membership' %}">
+                            <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path></svg>
+                            Renewal Membership
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% if user.is_staff %}
+                <div class="col-lg-12 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-header border-bottom"><h2 class="fs-5 fw-bold mb-1">Businesses Locations رجسٹرڈ کاروباری مقامات</h2></div>
+                        <div class="card-footer border-0 px-3 py-4" style="position: relative;">
+<div id="map" style="height: 500px;"></div>                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="row d-block d-xl-flex align-items-center">
+                                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                    <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
+                                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
+                                    </div>
+                                    <div class="d-sm-none">
+                                        <h2 class="h5">Active Members<br> کل ایکٹو ممبرز</h2>
+                                        <h3 class="fw-extrabold mb-1">{{active_members_count}}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-xl-7 px-xl-0">
+                                    <div class="d-none d-sm-block">
+                                        <h2 class="h6 text-gray-400 mb-0">Active Members <br> کل ایکٹو ممبرز</h2>
+                                        <h3 class="fw-extrabold mb-2">{{active_members_count}}</h3>
+                                    </div>
+                                    <small class="d-flex align-items-center text-gray-500">
+                                        {{today }}
+                                    </small> 
+                                    <div class="small d-flex mt-1">                               
+                                        <div>Since last month <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg><span class="text-success fw-bolder">{{ active_percentage_change }}%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="row d-block d-xl-flex align-items-center">
+                                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                    <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
+                                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                    <div class="d-sm-none">
+                                        <h2 class="fw-extrabold h5">Pending Members <br>کل زیر التواء اراکین </h2>
+                                        <h3 class="mb-1">{{pending_members_count}}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-xl-7 px-xl-0">
+                                    <div class="d-none d-sm-block">
+                                        <h2 class="h6 text-gray-400 mb-0">Pending Applications <br>کل زیر التواء درخواستیں </h2>
+                                        <h3 class="fw-extrabold mb-2">{{pending_members_count}}</h3>
+                                    </div>
+                                    <small class="d-flex align-items-center text-gray-500">
+                                        {{today }}
+                                    </small> 
+                                    <div class="small d-flex mt-1">                               
+                                        <div>Since last month <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg><span class="text-danger fw-bolder">{{ pending_percentage_change }}%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+ <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script>
+        // Initialize the map, centered on Pakistan
+        var map = L.map('map').setView([30.3753, 69.3451], 6); // Pakistan coordinates
+
+        // Add a tile layer to the map (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Create a marker cluster group
+        var markers = L.markerClusterGroup();
+
+        // Fetch Tehsil data from the Django view
+        fetch("{% url 'tehsils_map' %}")
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function(tehsil) {
+                    // Custom marker icon
+                    var tehsilIcon = L.icon({
+                        iconUrl: 'http://127.0.0.1:8000/static/assets/img/brand/CEA PIN.png', // Replace with your custom icon URL
+                        iconSize: [25, 41], // Size of the icon
+                        iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
+                        popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
+                    });
+
+                    // Add marker for each Tehsil to the cluster group
+                    var marker = L.marker([tehsil.latitude, tehsil.longitude], { icon: tehsilIcon })
+                        .bindPopup(`<b>${tehsil.name}</b><br>District: ${tehsil.district}<br>Members: ${tehsil.member_count}`)
+                        .on('click', function() {
+                            map.setView([tehsil.latitude, tehsil.longitude], 10); // Zoom in when marker is clicked
+                        });
+
+                    markers.addLayer(marker); // Add marker to cluster group
+                });
+
+                // Add marker cluster group to the map
+                map.addLayer(markers);
+            });
+    </script>
+                <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="row d-block d-xl-flex align-items-center">
+                                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                    <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                    <div class="d-sm-none">
+                                        <h2 class="fw-extrabold h5"> Suspended Members<br>کل معطل اراکین </h2>
+                                        <h3 class="mb-1">{{suspended_members_count}}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-xl-7 px-xl-0">
+                                    <div class="d-none d-sm-block">
+                                        <h2 class="h6 text-gray-400 mb-0"> Suspended Members<br>کل معطل اراکین </h2>
+                                        <h3 class="fw-extrabold mb-2">{{suspended_members_count}}</h3>
+                                    </div>
+                                    <small class="d-flex align-items-center text-gray-500">
+                                        {{today }}
+                                    </small> 
+                                    <div class="small d-flex mt-1">                               
+                                        <div>Since last month <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg><span class="text-success fw-bolder">{{ suspended_percentage_change }}%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-xl-12 mb-4">
+                  <div class="card card-body shadow border-0 table-wrapper table-responsive">
+            <table id="datatable" class="table user-table table-hover align-items-center">
+                <thead>
+                <tr>
+                    <th class="border-bottom">Name</th>
+                    <th class="border-bottom">CEA Card Number</th>
+                    <th class="border-bottom">Phone</th>
+                    <th class="border-bottom">Tehsil</th>
+                    <th class="border-bottom">Membership Status</th>
+                    <th class="border-bottom">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in members %}
+                <tr>
+                    <td><a href="#" class="d-flex align-items-center">
+                        {% if member.image %}
+                        <img
+                            src="../assets/img/team/profile-picture-1.jpg" class="avatar rounded-circle me-3"
+                            alt="Avatar">
+                        {% else %}
+                        <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
+               {% with name_parts=member.full_name.split %}
+                <span>{{ name_parts.0|slice:":1" }}{{ name_parts.1|slice:":1" }}</span>
+            {% endwith %}
+                        </div>
+
+                        {% endif %}
+                        <div class="d-block"><span class="fw-bold">{{ member.full_name }}</span>
+                            <div class="small text-gray">{{ member.business_name}}</div>
+                        </div>
+                    </a></td>
+                    <td><span class="fw-normal">{{ member.user.currency_association_id }}</span></td>
+                    <td><span class="fw-normal">{{ member.pri_mob }}</span></td>
+                    <td><span class="fw-normal">{{ member.tehsil }}</span></td>
+                    <td>
+                        {% if member.status == 'active' %}
+                        <span class="fw-normal d-flex align-items-center"><svg class="icon icon-xxs text-success me-1"
+                                                                               fill="currentColor" viewBox="0 0 20 20"
+                                                                               xmlns="http://www.w3.org/2000/svg"><path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path></svg> <span class="fw-normal text-success">Active</span></span>
+                        {% elif member.status == 'suspended' %}
+                        <span class="fw-normal d-flex align-items-center"><svg class="icon icon-xxs text-danger me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg> <span class="fw-normal text-danger">Suspended</span></span>
+                        {% else %}
+                        <span class="fw-normal d-flex align-items-center"><svg class="icon icon-xxs text-purple me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> <span class="fw-normal text-purple">Pending</span></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                </svg>
+                                <span class="visually-hidden">Toggle Dropdown</span></button>
+                            <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1" style="">
+
+                                <a class="dropdown-item d-flex align-items-center" href="{% url 'view_member' member.id %}">
+                                <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                    <path fill-rule="evenodd"
+                                          d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                View Details </a>
+                                <a class="dropdown-item d-flex align-items-center" target="_blank" href="{% url 'generate_member_detail' member.id %}">
+                                <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                    <path fill-rule="evenodd"
+                                          d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                Print Details </a>
+{% if request.user.is_staff or request.user.is_superuser %}
+    <a class="dropdown-item d-flex align-items-center" href="#" onclick="confirmToggleStatus({{ member.id }}, '{{ member.status }}')">
+        <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 6a3 3 0 11-6 0 3 3 0 016 0zM14 17a6 6 0 00-12 0h12zM13 8a1 1 0 100 2h4a1 1 0 100-2h-4z"></path>
+        </svg>
+        {% if member.status == 'active' %}
+            Suspend
+        {% else %}
+            Activate
+        {% endif %}
+    </a>
+{% endif %}
+                                <script>
+
+                                // Function to get the CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+// Function to handle the toggle status action
+function confirmToggleStatus(memberId, currentStatus) {
+    let actionText = (currentStatus === 'active') ? 'Suspend' : 'Activate';
+    let confirmButtonText = (currentStatus === 'active') ? 'Yes, suspend!' : 'Yes, activate!';
+
+    Swal.fire({
+        title: `Are you sure you want to ${actionText} this member?`,
+        text: `The member will be ${actionText}d.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmButtonText,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // AJAX request to toggle member status
+            $.ajax({
+                url: '/toggle-member-status/' + memberId + '/',  // Adjust URL if needed
+                type: 'POST',
+                headers: { "X-CSRFToken": getCookie('csrftoken') },  // Add CSRF token for security
+                success: function(response) {
+                    Swal.fire(
+                        'Success!',
+                        response.message,
+                        'success'
+                    ).then(() => {
+                        // Reload the page to reflect the new status
+                        location.reload();
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire(
+                        'Error!',
+                        xhr.responseText || 'There was an issue updating the status.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+</script>
+                            </div>
+                        </div>
+                        {% if request.user.is_staff or request.user.is_superuser %}
+    <a href="#" onclick="confirmDelete({{ member.id }})" class="">
+        <svg class="icon icon-xs text-danger ms-1" title="" data-bs-toggle="tooltip" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-bs-original-title="Delete" aria-label="Delete">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+        </svg>
+    </a>
+                        <script>
+    // Function to get the CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Function to confirm deletion
+    function confirmDelete(memberId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This member will be permanently deleted!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the AJAX request to delete the member
+                $.ajax({
+                    url: '/delete-member/' + memberId + '/',
+                    type: 'POST',
+                    headers: { "X-CSRFToken": getCookie('csrftoken') },
+                    success: function(response) {
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        ).then(() => {
+                            // Optionally, reload the page or remove the deleted item from the DOM
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'There was a problem deleting the member.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+</script>
+{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+<!-- Custom Pagination Structure -->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination mb-0">
+            <li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
+            <!-- Pagination numbers will be dynamically inserted here -->
+            <li class="page-item next"><a class="page-link next" href="#">Next</a></li>
+        </ul>
+    </nav>
+    <div class="fw-normal small mt-4 mt-lg-0">Showing <b id="showing-start">1</b> to <b id="showing-end">5</b> out of <b id="total-entries">0</b> entries</div>
+</div>
+                        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var dataTableEl = document.getElementById('datatable');
+        if (dataTableEl) {
+            // Initialize DataTable but disable default pagination
+            const dataTable = new simpleDatatables.DataTable(dataTableEl, {
+                paging: true,
+                perPage: 5, // You can adjust rows per page here
+                perPageSelect: false,
+                labels: {
+                    placeholder: "Search...",
+                    noRows: "No entries found",
+                    info: "Showing {start} to {end} of {rows} entries",
+                },
+                layout: {
+                    top: "",  // Disable default top pagination
+                    bottom: "" // Disable default bottom pagination
+                }
+            });
+
+            // Search functionality
+            var searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function () {
+                dataTable.search(this.value);
+            });
+
+            // Custom Pagination Setup
+            function updatePagination() {
+                const totalPages = dataTable.totalPages;
+                const currentPage = dataTable.currentPage;
+                const paginationContainer = document.querySelector('.pagination');
+
+                // Remove previous page numbers
+                paginationContainer.querySelectorAll('.page-number').forEach(el => el.remove());
+
+                // Dynamically create page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    const li = document.createElement('li');
+                    li.classList.add('page-item', 'page-number');
+                    if (i === currentPage) {
+                        li.classList.add('active');
+                    }
+                    li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                    paginationContainer.insertBefore(li, paginationContainer.querySelector('.next'));
+
+                    // Add click event to go to the respective page
+                    li.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        dataTable.page(i);
+                    });
+                }
+
+                // Update the "Showing X out of Y entries" information
+                const start = (currentPage - 1) * dataTable.options.perPage + 1;
+                const end = Math.min(currentPage * dataTable.options.perPage, dataTable.data.length);
+                document.getElementById('showing-start').textContent = start;
+                document.getElementById('showing-end').textContent = end;
+                document.getElementById('total-entries').textContent = dataTable.data.length;
+            }
+
+            // Update pagination when the table page changes
+            dataTable.on('datatable.page', updatePagination);
+
+            // Previous button
+            document.querySelector('.page-link.prev').addEventListener('click', function (e) {
+                e.preventDefault();
+                dataTable.prevPage();
+            });
+
+            // Next button
+            document.querySelector('.page-link.next').addEventListener('click', function (e) {
+                e.preventDefault();
+                dataTable.nextPage();
+            });
+
+            // Initial pagination setup
+            updatePagination();
+        }
+    });
+</script>
+        </div>
+                    </div>
+                {% else %}
+                                 <!-- Left Column: Welcome Message -->
+        <div class="col-12 col-xl-6">
+            <div class="card card-body border-0 shadow mb-4">
+                <h2 class="h5 mb-4">Welcome خوش آمدید</h2>
+                <p>Hi, {{ member.full_name }}!</p> <!-- Replace with the actual username variable -->
+            </div>
+        </div>
+        <!-- Right Column: Date, Time, Day -->
+        <div class="col-12 col-xl-6">
+            <div class="card card-body border-0 shadow mb-4 text-center">
+                <h2 class="h5 mb-4">Current Date and Time</h2>
+                <p id="currentDateTime"></p>
+                <script>
+                    function updateDateTime() {
+                        const now = new Date();
+                        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                        document.getElementById('currentDateTime').textContent = now.toLocaleDateString('en-US', options);
+                    }
+                    updateDateTime();
+                    setInterval(updateDateTime, 1000); // Update every second
+                </script>
+            </div>
+        </div>
+        <div class="col-12 col-xl-12">
+            <div class="card card-body border-0 shadow mb-4"><h2 class="h5 mb-4">General information</h2>
+                <form id="memberForm" action="{% url 'view_member' member.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="full_name">Full Name پورا نام</label>
+            <input disabled class="form-control" name="full_name" value="{{ member.full_name }}" id="full_name" type="text" placeholder="Enter your full name" required>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="fathers_name">Father’s Name والد کا نام</label>
+            <input disabled class="form-control" name="father_name" value="{{ member.father_name }}" id="fathers_name" type="text" placeholder="Enter your father's name" required>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="birthday">Birthday تاریخ پیدائش</label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                <input disabled data-datepicker="" name="dob" class="form-control datepicker-input" id="birthday" type="text"
+                       placeholder="dd/mm/yyyy" value="{{ member.dob|date:'d/m/Y' }}" required>
+            </div>
+        </div>
+
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-4 mb-3">
+            <label for="cnic_number">CNIC Number شناختی کارڈ نمبر</label>
+            <input disabled class="form-control" name="cnic" value="{{member.cnic}}" id="cnic_number" type="text" placeholder="Enter your CNIC number" required>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="nic_type">Type of NIC شناختی کارڈ کی قسم</label>
+            <select disabled class="form-select mb-0" name="nic_type" id="nic_type" aria-label="Type of NIC">
+                <option value="">Select NIC Type</option> <!-- Placeholder option -->
+                <option value="cnic" {% if member.nic_type == 'cnic' %}selected{% endif %}>CNIC</option>
+                <option value="nicop" {% if member.nic_type == 'nicop' %}selected{% endif %}>NICOP</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="gender">Gender جنس</label>
+            <select disabled class="form-select mb-0" name="gender" id="gender" aria-label="Gender select example">
+                <option value="">Gender</option>
+                <option value="female" {% if member.gender == 'female' %}selected{% endif %}>Female</option>
+                <option value="male" {% if member.gender == 'male' %}selected{% endif %}>Male</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3"><label for="pri_mob">Primary Phone بنیادی فون نمبر</label>
+                            <input disabled name="pri_mob" value="{{ member.pri_mob }}" class="form-control" id="pri_mob"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your Phone Number"
+                                                                                 required="" name="pri_mob">
+                        </div>
+                        <div class="col-md-6 mb-3"><label for="sec_mob">Secondary Phone بنیادی فون نمبر</label>
+                            <input disabled name="sec_mob" value="{{ member.sec_mob }}" class="form-control" id="sec_mob"
+                                                                                 type="text"
+                                                                                 placeholder="Enter your secondary phone number"
+                                                                                 required="" name="sec_mob">
+                        </div>
+                    </div>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="country_of_stay">Country of Stay قیام کا ملک</label>
+            <select disabled class="form-select mb-0" name="country_of_stay" id="country_of_stay" name="new_country_of_stay" aria-label="Country of Stay">
+                <option value="" disabled>Country of Stay</option>
+                {% for country in countries %}
+
+                                    {% if country.name == member.country_of_stay.name %}
+                                        <option value="{{ country.code }}" selected>{{ country.name }}</option>
+                                    {% else %}
+                                        <option value="{{ country.code }}">{{ country.name }}</option>
+                                    {% endif %}
+
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+    <div class="form-group">
+        <label for="dual_citizen">Dual Citizen دوہری شہریت</label>
+        <div class="input-group">
+            <select disabled  class="form-select mb-0" id="dual_citizen" name="dual_citizen" aria-label="dual_citizen">
+                <option value="" disabled >Dual Citizen</option>
+                <option value="No"{% if member.dual_citizen == 'No' %}selected{% endif %}>No</option>
+                <option value="Yes"{% if member.dual_citizen == 'Yes' %}selected{% endif %}>Yes</option>
+            </select>
+        </div>
+    </div>
+</div>
+        <div class="col-md-4 mb-3">
+    <div class="form-group">
+        <label for="other_citizenship">Other Citizenship دوسری شہریت</label>
+        <div class="input-group">
+            <select disabled  class="form-select mb-0" id="other_citizenship" name="other_citizenship" aria-label="other_citizenship">
+                <option value=""   >NIL</option>
+                {% for country in countries %}
+
+                                    {% if country.name == member.other_citizenship.name %}
+                                        <option value="{{ country.code }}" selected>{{ country.name }}</option>
+                                    {% else %}
+                                        <option value="{{ country.code }}">{{ country.name }}</option>
+                                    {% endif %}
+
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-3">
+            <label for="present_address">Present Address موجودہ پتہ</label>
+            <textarea disabled class="form-control" name="present_address" value="{{member.present_address}}" id="present_address" placeholder="Enter your present address" required>{{ member.present_address }}</textarea>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="permanent_address">Permanent Address مستقل پتہ</label>
+            <textarea disabled class="form-control" name="permanent_address" value="{{member.permanent_address}}" id="permanent_address" placeholder="Enter your permanent address" required>{{ member.permanent_address }}</textarea>
+        </div>
+    </div>
+
+    <h2 class="h5 my-4">Business Information</h2>
+    <div class="row">
+        <div class="col-sm-9 mb-3">
+            <label for="business_name">Business Name کاروبار کا نام</label>
+            <input disabled class="form-control" name="business_name" value="{{member.business_name}}" id="business_name" type="text" placeholder="Enter your business name" required>
+        </div>
+        <div class="col-sm-3 mb-3">
+            <label for="designation">Designation عہدہ</label>
+            <input disabled class="form-control" name="designation" value="{{member.designation}}" id="designation" type="text" placeholder="Enter designation" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 mb-3">
+            <label for="no_of_employees">No of Employees ملازمین کی تعداد</label>
+            <input disabled class="form-control" name="employee_number" value="{{member.employee_number}}" id="no_of_employees" type="number" placeholder="Enter no of employees" required>
+        </div>
+        <div class="col-sm-4 mb-3">
+            <label for="primary_landline">Primary Landline بنیادی لینڈ لائن</label>
+            <input disabled class="form-control" name="pri_land" value="{{member.pri_land}}" id="primary_landline" type="tel" placeholder="Enter primary landline" required>
+        </div>
+        <div class="col-sm-4 mb-3">
+            <label for="secondary_landline">Secondary Landline سیکنڈری لینڈ لائن</label>
+            <input disabled class="form-control" name="sec_land" value="{{member.sec_land}}" id="secondary_landline" type="tel" placeholder="Enter secondary landline">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 mb-3">
+            <label for="district">District ضلع</label>
+            <select disabled disabled class="form-control" id="district" name="district" required>
+                <option value="" disabled>District</option>
+                {% for city in city %}
+                    {% if city.id == member.district.id %}
+                        <option value="{{ city.id }}" selected>{{ city.name }}</option>
+                    {% else %}
+                        <option value="{{ city.id }}">{{ city.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+            <label for="tehsil">Tehsil تحصیل</label>
+            <select disabled disabled class="form-control" id="tehsil" name="tehsil" required>
+                <option value="" disabled>Tehsil</option>
+                {% for city in tehsil %}
+                    {% if city.id == member.tehsil.id %}
+                        <option value="{{ city.id }}" selected>{{ city.name }}</option>
+                    {% else %}
+                        <option value="{{ city.id }}">{{ city.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-4 mb-3">
+            <label for="business_address">Business Address مکمل کاروباری پتہ</label>
+            <textarea disabled disabled class="form-control" name="business_address" id="business_address" placeholder="Enter your business address" required>{{ member.business_address }}</textarea>
+        </div>
+    </div>
+</form>
+            </div>
+        </div>
+                            {% endif %}
+
+            </div>
+
+
+            {% endblock %}
+        </main>
+
+    <!-- Core -->
+<script src="{% static '/vendor/@popperjs/core/dist/umd/popper.min.js' %}"></script>
+<script src="{% static '/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+<!-- Vendor JS -->
+<script src="{% static '/vendor/onscreen/dist/on-screen.umd.min.js' %}"></script>
+
+<!-- Slider -->
+<script src="{% static '/vendor/nouislider/distribute/nouislider.min.js' %}"></script>
+
+<!-- Smooth scroll -->
+<script src="{% static '/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+
+<!-- Charts -->
+<script src="{% static '/vendor/chartist/dist/chartist.min.js' %}"></script>
+<script src="{% static '/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js' %}"></script>
+
+<!-- Datepicker -->
+<script src="{% static '/vendor/vanillajs-datepicker/dist/js/datepicker.min.js' %}"></script>
+
+<!-- Sweet Alerts 2 -->
+<script src="{% static '/vendor/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+
+<!-- Moment JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js' %}"></script>
+
+<!-- Vanilla JS Datepicker -->
+<script src="{% static '/vendor/vanillajs-datepicker/dist/js/datepicker.min.js' %}"></script>
+
+<!-- Notyf -->
+<script src="{% static '/vendor/notyf/notyf.min.js' %}"></script>
+
+<!-- Simplebar -->
+<script src="{% static '/vendor/simplebar/dist/simplebar.min.js' %}"></script>
+
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Volt JS -->
+<script src="{% static '/assets/js/volt.js' %}"></script>
+
+    
+</body>
+
+</html>

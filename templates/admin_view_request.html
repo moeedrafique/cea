@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <title>{% block title %}Members List - CEA Portal {% endblock %}</title>
+        <style>
+        /* Add some basic styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .edit-input {
+            display: none;
+        }
+        .display-value {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+<main class="content">
+    {% block content %}
+    <div class="row">
+        <div class="col-12 col-xl-12">
+            <div class="card card-body border-0 shadow mb-4"><h2 class="h5 mb-4">Renewal Request ==> {{ change_request.application_id }}</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% if changes|length > 0 %}
+                <table class="table user-table table-hover align-items-center">
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Old Value</th>
+                            <th>New Value (Editable)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if changes|length > 0 %}
+                            {% for field, values in changes.items %}
+                            <tr>
+                                <td>{{ field }}</td>
+                                <td>{{ values.previous }}</td>
+                                <td>
+                                    <!-- Display both span and input so that user can toggle between them -->
+                                    <span class="display-value">{{ values.new }}</span>
+                                    <input type="text" class="edit-input" name="changes[{{ field }}]" value="{{ values.new }}">
+                                    <button type="button" class="btn btn-secondary edit-btn">
+                                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3">No changes available to review.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                {% endif %}
+                {% if changes|length > 0 %}
+                    <!-- Optional rejection reason -->
+                    <textarea class="form-control mb-3" name="rejection_reason" placeholder="Reason for rejection (optional)" style="margin-top: 10px;"></textarea>
+
+                    <!-- Form for approving/rejecting the change request -->
+                    <button type="submit" name="approve_change_request" class="btn btn-success">Approve Change Request</button>
+                    <button type="submit" name="reject_change_request" class="btn btn-danger">Reject Change Request</button>
+                {% endif %}
+            </form>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.edit-btn').forEach(function(button) {
+                        button.addEventListener('click', function() {
+                            var cell = this.closest('td');
+                            var displayValue = cell.querySelector('.display-value');
+                            var editInput = cell.querySelector('.edit-input');
+
+                            // Toggle between the display value and the input field
+                            displayValue.style.display = (displayValue.style.display === 'none') ? 'inline' : 'none';
+                            editInput.style.display = (editInput.style.display === 'none') ? 'inline' : 'none';
+                            editInput.focus();
+                        });
+                    });
+                });
+            </script>
+
+                <h2 class="h5 my-4">Payment Details</h2>
+    <p><strong>Fee Type:</strong> {{ fee.fee_type }}</p>
+    <p><strong>Submission Method:</strong> {{ fee.submission_method }}</p>
+    <p><strong>Amount Submitted:</strong> {{ fee.amount_submitted }}</p>
+    <p><strong>Amount Remaining:</strong> {{ fee.amount_remaining }}</p>
+    <p><strong>Transaction ID:</strong> {{ fee.transaction_id }}</p>
+    <p><strong>Payment Approved:</strong> {{ fee.is_approved }}</p>
+
+    <!-- Form for approving/rejecting the payment -->
+    <form method="post" style="margin-top: 20px;">
+        {% csrf_token %}
+        <button type="submit" name="approve_payment" class="btn btn-success">Approve Payment</button>
+        <button type="submit" name="reject_payment" class="btn btn-danger">Reject Payment</button>
+    </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</main>
+
+</body>
+

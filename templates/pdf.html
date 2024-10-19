@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Association</title>
+    <style>
+        .flexrow {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Apply Times New Roman */
+    position: relative; /* Relative positioning for child elements */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+        }
+        body::before {
+    content: ""; /* Create a pseudo-element for the watermark */
+    position: fixed; /* Fixed position to cover the entire viewport */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    right: 0; /* Stretch to right */
+    bottom: 0; /* Stretch to bottom */
+            background-image: url('https://res.cloudinary.com/dnycb6zl5/image/upload/fl_preserve_transparency/v1729208158/cea_logo_watermark_2_ksko4o.png'); /* Set the watermark image */
+    background-size:contain;
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: center; /* Center the image */
+    opacity: 0.12; /* Set the opacity for transparency */
+    z-index: -1; /* Position behind other elements */
+    mix-blend-mode: multiply; /* Blend the watermark with the background */
+}
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 5px;
+        }
+
+        .container h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+        .application-info {
+            width: 95%;
+            margin: 30px auto 0;
+            text-align: right;
+            font-size: 16px;
+        }
+
+        .application-info span {
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            border-bottom: 2px solid grey;
+            width: 95%;
+            margin: 20px auto 0;
+        }
+        .business-info {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            margin: 20px auto;
+            font-size: 16px;
+        }
+
+        .business-info div {
+            flex: 1; /* Ensures both sides take equal width */
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+        }
+
+        .business-info .left-info {
+            text-align: left;
+            padding-right: 20px; /* Adds some space on the right side of the left section */
+        }
+
+        .business-info .right-info {
+            text-align: right; /* Aligns text inside the box to the left */
+            padding-left: 20px; /* Adds space on the left side of the right section */
+        }
+        .business-info div .cea-card {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex; /* Use flex to align items */
+            justify-content: space-between; /* Space between label and value */
+        }
+
+        .value {
+            text-align: right; /* Align spans to the right */
+            flex-grow: 1; /* Allow the value to take remaining space */
+            -webkit-box-flex: 1; /* For older Safari support */
+            -webkit-flex: 1; /* For older Safari support */
+        }
+
+        .business-info div span {
+            font-weight: bold;
+        }
+
+        /* New Styling for CEA Card Number */
+        .cea-card {
+            margin-bottom: 10px; /* Space below the CEA Card Number section */
+            line-height: 14px;
+            font-size: 20px; /* Slightly larger font */
+        }
+        .receipt-card {
+            margin-bottom: 10px; /* Space below the CEA Card Number section */
+            line-height: 12px;
+            font-size: 12px; /* Slightly larger font */
+        }
+
+        .cea-card span {
+            font-weight: normal; /* Normal font for the data inside the placeholder */
+        }
+        .cea-card.designation {
+    margin-bottom: 75px; /* Adjust this value to create the space */
+}
+        .cea-card.remaining_amount {
+    padding-top: 45px; /* Adjust this value to create the space */
+}
+        .cea-card.phone {
+    padding-top: 25px; /* Adjust this value to create the space */
+}
+h2.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 15px; /* Space below the title */
+    text-align: center; /* Center aligns the title */
+}
+h6.section-title {
+    font-size: 16px;
+    margin-bottom: 15px; /* Space below the title */
+    text-align: center; /* Center aligns the title */
+}
+.picture-box {
+    width: 150px; /* Adjust the width as needed */
+    height: 170px; /* Adjust the height as needed */
+    border: 2px solid #ccc; /* Border color and thickness */
+    border-radius: 20px; /* Rounded corners */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin: 20px; /* Optional margin around the box */
+    margin-left: auto;
+}
+.signature-section {
+    text-align: center; /* Center align the text */
+    margin: 20px 0; /* Add some margin */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+.declaration {
+    font-size: 18px; /* Size of the declaration text */
+    margin-bottom: 60px; /* Space below the declaration */
+}
+
+.signatures {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+    justify-content: space-between; /* Space out the signature boxes */
+    padding: 0 20px; /* Padding for the signature section */
+}
+
+.signature-box {
+            flex: 1; /* Ensures both sides take equal width */
+              -webkit-box-flex: 1;
+  -webkit-flex: 1;
+    text-align: center; /* Center text within each box */
+}
+
+.signature-box hr {
+    border: none; /* Remove default border */
+    border-top: 1px solid #000; /* Add a solid top border */
+    margin: 0; /* Remove margin */
+    height: 2px; /* Height of the line */
+}
+
+.signature-box span {
+    display: block; /* Block display for label */
+    margin-top: 5px; /* Space above label */
+    font-size: 16px; /* Font size for labels */
+}
+.qr-code {
+    width: 100px; /* Adjust the size of the QR code */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between QR code and text */
+}
+    </style>
+</head>
+<body>
+<img style="position:absolute;" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" class="qr-code">
+    <div class="container">
+        <h1>CURRENCY EXCHANGE ASSOCIATION <br> کرنسی ایکسچینج ایسوسی ایشن</h1>
+        <h2>AZAD JAMMU & KASHMIR <br> آزاد جموں و کشمیر</h2>
+    </div>
+
+    <div class="application-info">
+        <span>APPLICATION ID:</span> {{ application_id }}<br>
+        <span>Date & Time (MM/DD/YYYY HH:MM:SS):</span> {{ submission_date|date:"m/d/Y H:i:s" }}
+
+    </div>
+
+    <hr>
+            <!-- Personal Information title with underline -->
+        <h2 class="section-title">Personal Information</h2>
+ <div class="business-info">
+        <div class="left-info">
+            <!-- CEA Card Number with new styling -->
+            <div class="cea-card">Name: <div class="value"><span>{{ member.full_name }}</span></div></div>
+            <div class="cea-card">Father’s Name: <div class="value"><span>{{ member.father_name }}</span></div></div>
+            <div class="cea-card">CNIC Number: <div class="value"><span>{{ member.cnic }}</span></div></div>
+            <div class="cea-card">Application Type: <div class="value"><span>{{ fee.fee_type|capfirst }}</span></div></div>
+            <div class="cea-card">Date of Birth (MM/DD/YYYY): <div class="value"><span>{{ member.dob }}</span></div></div>
+            <div class="cea-card">Gender: <div class="value"><span>{{ member.gender|capfirst }}</span></div></div>
+            <div class="cea-card">Type of NIC: <div class="value"><span>{{ member.nic_type|capfirst }}</span></div></div>
+            <div class="cea-card">Country of Stay: <div class="value"><span>{{ member.country_of_stay.name }}</span></div></div>
+            <div class="cea-card">Present Address: <div class="value"><span>{{ member.present_address }}</span></div></div>
+            <div class="cea-card">Permanent Address: <div class="value"><span>{{ member.permanent_address }}</span></div></div>
+            <div class="cea-card">Dual Citizen: <div class="value"><span>{{ member.dual_citizen }}</span></div></div>
+            <div class="cea-card">Other Citizenship (if any): <div class="value"><span>{{ member.other_citizenship }}</span></div></div>
+        </div>
+        <div class="right-info">
+            <div class="picture-box"><span></span></div>
+            <div class="cea-card phone">Phone Number: <div class="value"><span>{{ member.pri_mob }}</span></div></div>
+            <div class="cea-card">Secondary Number: <div class="value"><span>{{ member.sec_mob }}</span></div></div>
+        </div>
+    </div>
+
+
+
+    <h2 class="section-title">Business Information</h2>
+ <div class="business-info">
+        <div class="left-info">
+            <!-- CEA Card Number with new styling -->
+            <div class="cea-card">CEA Card Number: <div class="value"><span>{{ member.pri_mob }}</span></div></div>
+            <div class="cea-card">Business Name: <div class="value"><span>{{ member.business_name }}</span></div></div>
+            <div class="cea-card">Business Address: <div class="value"><span>{{ member.business_address }}</span></div></div>
+            <div class="cea-card">Tehsil: <div class="value"><span>{{ member.tehsil.name }}</span></div></div>
+            <div class="cea-card">District: <div class="value"><span>{{ member.district.name }}</span></div></div>
+            <div class="cea-card">Employee #: <div class="value"><span>{{ member.employee_number }}</span></div></div>
+        </div>
+        <div class="right-info">
+            <div class="cea-card designation">Designation: <div class="value"><span>{{ member.designation }}</span></div></div>
+            <div class="cea-card">Primary Landline: <div class="value"><span>{{ member.pri_mob }}</span></div></div>
+            <div class="cea-card">Secondary Landline: <div class="value"><span>{{ member.sec_land }}</span></div></div>
+        </div>
+    </div>
+
+<hr>
+    <h2 class="section-title">Fee Information</h2>
+ <div class="business-info">
+        <div class="left-info">
+            <!-- CEA Card Number with new styling -->
+            <div class="cea-card">Fee Type: <div class="value"><span>{{ fee.fee_type|capfirst }}</span></div></div>
+            <div class="cea-card">Submission Method: <div class="value"><span>{{ fee.submission_method|capfirst }}</span></div></div>
+            <div class="cea-card">Amount Submitted (PKR): <div class="value"><span>{{ fee.amount_submitted }}</span></div></div>
+            <div class="cea-card">Transaction ID: <div class="value"><span>{{ fee.transaction_id }}</span></div></div>
+        </div>
+        <div class="right-info">
+            <div class="cea-card remaining_amount">Amount Remaining (PKR): <div class="value"><span>{{ fee.amount_remaining }}</span></div></div>
+        </div>
+    </div>
+<hr>
+
+<div class="signature-section">
+    <p class="declaration">I affirm that the information provided in this form is accurate, up to date, and may be used as is.</p>
+    <div class="signatures">
+        <div class="signature-box">
+            <hr />
+            <span>Applicant’s Signature</span>
+        </div>
+        <div class="signature-box">
+            <hr />
+            <span>President’s Signature / Stamp</span>
+        </div>
+    </div>
+</div>
+<hr>
+
+    <h2 class="section-title">Receipt (Applicant’s Copy)</h2>
+ <div class="business-info">
+        <div class="left-info">
+            <!-- CEA Card Number with new styling -->
+            <div class="receipt-card">Name: <span>{{ member.full_name }}</span></div>
+            <div class="receipt-card">Contact: <span>{{ member.pri_mob }}</span></div>
+            <div class="receipt-card">Shop Name: <span>{{ member.business_name }}</span></div>
+            <div class="receipt-card">Transaction ID: <span>{{ fee.transaction_id }}</span></div>
+        </div>
+        <div class="right-info">
+            <div class="receipt-card remaining_amount">CEA Card Number: <span>{{ member.full_name }}</span></div>
+            <div class="receipt-card remaining_amount">Amount Received (PKR): <span>{{ fee.amount_submitted }}</span></div>
+            <div class="receipt-card remaining_amount">Application Type: <span>{{ fee.fee_type|capfirst }}</span></div>
+            <div class="receipt-card remaining_amount">Amount Remaining: <span>{{ fee.amount_remaining }}</span></div>
+        </div>
+    </div>
+<hr>
+<h6 class="section-title">Presidential Contact: +92-312-5142455, +92-341-3888222, +92-58274-42455.</h6>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+<body>
+{% block content %}
+    <main>
+
+        <!-- Section -->
+        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center form-bg-image" data-background-lg="../../assets/img/illustrations/signin.svg">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Application Submitted Successfully <br>درخواست کامیابی کے ساتھ جمع کرائی گئی۔</h1>
+                            </div>
+                            <div class="mt-3 mb-4 text-center">
+                                <span class="fw-normal"></span>
+                            </div>
+                            <div class="d-flex justify-content-center my-4">
+Thank you for submitting your application. Our team has received your details and will carefully review your application within the next 2-3 business days.
+
+You will receive an update once the review process is completed. If any further information is needed, we will reach out to you.
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    Already registered?
+                                    <a href="{% url 'login' %}" class="fw-bold">Login account</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+</body>
+
+</html>
